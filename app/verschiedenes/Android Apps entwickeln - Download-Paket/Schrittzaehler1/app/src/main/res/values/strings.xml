@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Schrittzaehler1</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="zuruecksetzen">zurücksetzen</string>
+</resources>

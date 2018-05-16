@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Layout-Demos</string>
+    <string name="app_name">LayoutDemos</string>
+    <string name="relativelayout">RelativeLayout</string>
+    <string name="gewichteteslayout">Gewichtetes Layout</string>
+    <string name="inhalt">Inhalt</string>
+    <string name="kopfleiste">Kopfleiste</string>
+    <string name="fussleiste">Fußleiste</string>
+    <string name="zurueck">zurück</string>
+</resources>

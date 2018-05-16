@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mueckenfang</string>
+    <string name="welcome_message">Willkommen beim Mückenfang</string>
+    <string name="start_button_text">Start</string>
+</resources>

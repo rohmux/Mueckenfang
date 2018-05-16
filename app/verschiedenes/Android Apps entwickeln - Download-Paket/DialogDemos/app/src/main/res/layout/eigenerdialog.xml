@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" android:background="@color/halbtransparent">
+    <LinearLayout android:id="@+id/linearLayout1" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:background="@drawable/buttonbackground2" android:padding="10dp">
+        <TextView android:text="TextView" android:layout_height="wrap_content" android:textColor="@color/schwarz" android:id="@+id/inhalt" android:layout_width="160dp"></TextView>
+        <Button android:background="@drawable/buttonbackground2" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/ok" android:layout_marginTop="10dp" android:id="@+id/ok" android:layout_gravity="center_horizontal"></Button>
+    </LinearLayout>
+    
+</FrameLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Dialog-Demos</string>
+    <string name="app_name">DialogDemos</string>
+    <string name="alert">AlertDialog</string>
+    <string name="progress">ProgressDialog</string>
+    <string name="datepicker">DatePickerDialog</string>
+    <string name="timepicker">TimePickerDialog</string>
+    <string name="toast">Toast</string>
+    <string name="eigener_toast">Eigener Toast</string>
+    <string name="eigener">Eigener Dialog</string>
+    <string name="ok">ok</string>
+</resources>

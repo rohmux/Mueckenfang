@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Light">
+        <!--<item name="android:buttonStyle">@style/rundeButtons</item>-->
+    </style>
+
+    <style name="rundeButtons" >
+        <item name="android:background">@drawable/buttonbackground1</item>
+    </style>
+
+</resources>

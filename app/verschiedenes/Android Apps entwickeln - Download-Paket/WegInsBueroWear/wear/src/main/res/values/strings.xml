@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WegInsBueroWear</string>
+    <string name="hello_round">Hello Round World!</string>
+    <string name="hello_square">Hello Square World!</string>
+    <string name="wear_titel">Weg aufzeichnen</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
+</resources>

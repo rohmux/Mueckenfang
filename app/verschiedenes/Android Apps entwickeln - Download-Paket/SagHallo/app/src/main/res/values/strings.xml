@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SagHallo</string>
+    <string name="beschriftung">Was soll ich sagen?</string>
+    <string name="sag_es">Sag es</string>
+</resources>

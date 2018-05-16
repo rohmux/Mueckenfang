@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="@string/hello"
+    />
+<Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/demo_alert" android:text="@string/alert"></Button>
+<Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/demo_progress" android:text="@string/progress"></Button>
+<Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/demo_datepicker" android:text="@string/datepicker"></Button>
+<Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/demo_timepicker" android:text="@string/timepicker"></Button>
+<Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/demo_eigener" android:text="@string/eigener"></Button>
+<Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/demo_toast" android:text="@string/toast"></Button>
+<Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/demo_eigener_toast" android:text="@string/eigener_toast"></Button>
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    android:id="@+id/ergebnis"
+    />
+</LinearLayout>
