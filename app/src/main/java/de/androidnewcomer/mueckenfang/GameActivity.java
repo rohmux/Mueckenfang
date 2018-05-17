@@ -14,6 +14,7 @@ public class GameActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
         private float massstab;
+        massstab = getResources().getDisplayMetrics().density;
         spielStarten();
     }
 
@@ -47,7 +48,6 @@ public class GameActivity extends Activity {
 
         FrameLayout flTreffer = (FrameLayout) findViewById(R.id.bar_hits);
         FrameLayout flZeit = (FrameLayout) findViewById(R.id.bar_time);
-        massstab = getResources().getDisplayMetrics().density;
 
         ViewGroup.LayoutParams lpTreffer = flTreffer.getLayoutParams();
         lpTreffer.width = Math.round(massstab * 300 * Math.min(gefangeneMuecken, muecken) / muecken );
