@@ -7,6 +7,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.w3c.dom.Text;
 
+import java.util.Random;
+
 public class GameActivity extends Activity {
 
     @Override
@@ -15,6 +17,8 @@ public class GameActivity extends Activity {
         setContentView(R.layout.game);
         private float massstab;
         massstab = getResources().getDisplayMetrics().density;
+        private Random zufallsgenerator = new Random();
+        float zufallszahl = zufallsgenerator.nextFloat();
         spielStarten();
     }
 
@@ -54,5 +58,28 @@ public class GameActivity extends Activity {
         ViewGroup.LayoutParams lpZeit = flZeit.getLayoutParams();
         lpZeit.width = Math.round(massstab * zeit * 300 / 60 );
 
+    }
+
+    private void zeitHerunterzaehlen()
+    {
+        zeit = zeit - 1;
+        float zufallszahl = zufallsgenerator.nextFloat();
+        double wahrscheinlichkeit = muecken * 1.5 / 60;
+
+        if (wahrscheinlichkeit > 1)
+        {
+            eineMueckeAnzeigen();
+            if (zufallszahl < wahrscheinlichkeit - 1)
+            {
+                eineMueckeAnzeigen();
+            }
+        }
+        else
+        {
+            if (zufallszahl < wahrscheinlichkeit)
+            {
+                eineMueckeAnzeigen();
+            }
+        }
     }
 }

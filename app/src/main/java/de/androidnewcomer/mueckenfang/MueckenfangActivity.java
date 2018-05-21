@@ -20,6 +20,5 @@ public class MueckenfangActivity extends Activity implements View.OnClickListene
     public void onClick(View v)
     {
         startActivity(new Intent(this, GameActivity.class));
-        Intent i = new Int
     }
 }
