@@ -2,14 +2,18 @@ package de.androidnewcomer.mueckenfang;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.Date;
 import org.w3c.dom.Text;
 
 import java.util.Random;
 
-public class GameActivity extends Activity {
+public class GameActivity extends Activity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,12 @@ public class GameActivity extends Activity {
         private Random zufallsgenerator = new Random();
         float zufallszahl = zufallsgenerator.nextFloat();
         spielStarten();
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+
     }
 
     private void spielStarten()
@@ -57,6 +67,8 @@ public class GameActivity extends Activity {
         lpTreffer.width = Math.round(massstab * 300 * Math.min(gefangeneMuecken, muecken) / muecken );
         ViewGroup.LayoutParams lpZeit = flZeit.getLayoutParams();
         lpZeit.width = Math.round(massstab * zeit * 300 / 60 );
+        private ViewGroup spielbereich;
+        spielbereich = (ViewGroup) findViewById(R.id.spielBereich);
 
     }
 
@@ -81,5 +93,48 @@ public class GameActivity extends Activity {
                 eineMueckeAnzeigen();
             }
         }
+        mueckenVerschwinden();
+        bildschirmAktualisieren();
+        if(!pruefeSpielende)
+        {
+            pruefeRundenende();
+        }
+    }
+
+    private boolean pruefeSpielende()
+    {
+        if ( zeit == 0 && gefangeneMuecken < muecken )
+        {
+            gameOver();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean pruefeRundenende()
+    {
+        if (gefangeneMuecken >= muecken)
+        {
+            starteRunde();
+            return true;
+        }
+        return false;
+    }
+
+    private void eineMueckeAnzeigen()
+    {
+        int breite = spielbereich.getWidth();
+        int hoehe = spielbereich.getHeight();
+        int muecke_breite = Math.round(massstab * 50);
+        int muecke_hoehe = Math.round(massstab * 42);
+        ImageView muecke = new ImageView(this);
+        muecke.setImageResource(R.drawable.muecke);
+        muecke.setOnClickListener(this);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(muecke_breite, muecke_hoehe);
+        params.leftMargin = links;
+        params.topMargin = oben;
+        params.gravity = Gravity.TOP + Gravity.LEFT;
+        spielbereich.addView(muecke, params);
+        muecke.setTag(R.id.geburtsdatum, new Date());
     }
 }
