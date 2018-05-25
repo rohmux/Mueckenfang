@@ -1,7 +1,9 @@
 package de.androidnewcomer.mueckenfang;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +15,41 @@ import org.w3c.dom.Text;
 
 import java.util.Random;
 
-public class GameActivity extends Activity implements View.OnClickListener{
+public class GameActivity extends Activity implements View.OnClickListener, Runnable{
+    private static final long HOECHSTALTER_MS = 2000;
+    private int punkte;
+    private int runde;
+    private int gefangeneMuecken;
+    private int zeit;
+    private float massstab;
+    private int muecken;
+    private ViewGroup spielbereich;
+    private boolean spielLaeuft;
+    private Random zufallsgenerator = new Random();
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
-        private float massstab;
         massstab = getResources().getDisplayMetrics().density;
-        private Random zufallsgenerator = new Random();
         float zufallszahl = zufallsgenerator.nextFloat();
         spielStarten();
     }
 
     @Override
-    public void onClick(View v)
+    public void run()
     {
+        zeitHerunterzaehlen();
+    }
 
+    @Override
+    public void onClick(View muecke)
+    {
+        gefangeneMuecken++;
+        punkte += 100;
+        bildschirmAktualisieren();
+        spielbereich.removeView(muecke);
     }
 
     private void spielStarten()
@@ -47,6 +67,7 @@ public class GameActivity extends Activity implements View.OnClickListener{
         gefangeneMuecken = 0;
         zeit = 60;
         bildschirmAktualisieren();
+        handler.postDelayed(this, 1000);
     }
 
     private void bildschirmAktualisieren()
@@ -67,7 +88,6 @@ public class GameActivity extends Activity implements View.OnClickListener{
         lpTreffer.width = Math.round(massstab * 300 * Math.min(gefangeneMuecken, muecken) / muecken );
         ViewGroup.LayoutParams lpZeit = flZeit.getLayoutParams();
         lpZeit.width = Math.round(massstab * zeit * 300 / 60 );
-        private ViewGroup spielbereich;
         spielbereich = (ViewGroup) findViewById(R.id.spielBereich);
 
     }
@@ -95,9 +115,16 @@ public class GameActivity extends Activity implements View.OnClickListener{
         }
         mueckenVerschwinden();
         bildschirmAktualisieren();
-        if(!pruefeSpielende)
+        if(!pruefeSpielende())
         {
             pruefeRundenende();
+        }
+        if(!pruefeSpielende())
+        {
+            if(!pruefeRundenende())
+            {
+                handler.postDelayed(this, 1000);
+            }
         }
     }
 
@@ -127,6 +154,8 @@ public class GameActivity extends Activity implements View.OnClickListener{
         int hoehe = spielbereich.getHeight();
         int muecke_breite = Math.round(massstab * 50);
         int muecke_hoehe = Math.round(massstab * 42);
+        int links = zufallsgenerator.nextInt(breite - muecke_breite );
+        int oben = zufallsgenerator.nextInt(hoehe - muecke_hoehe);
         ImageView muecke = new ImageView(this);
         muecke.setImageResource(R.drawable.muecke);
         muecke.setOnClickListener(this);
@@ -137,4 +166,32 @@ public class GameActivity extends Activity implements View.OnClickListener{
         spielbereich.addView(muecke, params);
         muecke.setTag(R.id.geburtsdatum, new Date());
     }
+
+    private void mueckenVerschwinden()
+    {
+        int nummer = 0;
+        while (nummer < spielbereich.getChildCount())
+        {
+            ImageView muecke = (ImageView)spielbereich.getChildAt(nummer);
+            Date geburtsdatum = (Date)muecke.getTag(R.id.geburtsdatum);
+            long alter = (new Date()).getTime() - geburtsdatum.getTime();
+            if (alter > HOECHSTALTER_MS)
+            {
+                spielbereich.removeView(muecke);
+            }
+            else
+                {
+                    nummer++;
+                }
+        }
+    }
+
+    private void gameOver()
+    {
+        Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
+        dialog.setContentView(R.layout.gameover);
+        dialog.show();
+        spielLaeuft = false;
+    }
+
 }
